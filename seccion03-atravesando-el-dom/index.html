@@ -1,0 +1,179 @@
+<!--  **********************************************************************************************************  -->
+<!--  **********  /01-jquery-y-ajax-desde-cero-zenva-academy/seccion03-atravesando-el-dom/index.html  **********  -->
+<!--  **********************************************************************************************************  -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title> Seccion 3 - Atravesando el DOM </title>
+
+    <!--  **********  Favicon  **********  -->
+    <link rel="icon" href="img/jquery-icon.png">
+
+    <!--  **********  Librería de jQuery - CDN de Google  **********  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+
+
+    <!--  **********  Estilos  **********  -->
+    <style>
+        .header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid green;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            /* text-align: left; */
+            margin-top: 20px;
+            gap: 50px;
+            font-size: 16px;
+        }
+
+        #animals {
+            width: 600px;
+        }
+
+        .creature {
+            margin: 20px;
+            background-color: #ffe1ff;
+            border: 1px solid #8b7bbb;
+        }
+
+        .terrain {
+            margin: 20px;
+            background-color: green;
+            border: 1px solid #8b7bbb;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--  **********  Header o Cabecera  **********  -->
+    <header class="header">
+
+        <h1> Seccion 3 - Atravesando el DOM. </h1>
+        <hr>
+
+    </header>
+
+    <!--  **********  Contenido  **********  -->
+    <main class="main">
+
+        <div id="animals" class="creature category">
+            Animals
+
+            <div class="creature category">
+                Mammals
+                <div class="creature"> Dog </div>
+                <div class="creature" id="cats"> Cats </div>
+                <div class="terrain"> Forest </div>
+                <div class="terrain"> Prairie </div>
+            </div>
+
+            <div class="creature category">
+                Reptiles
+                <div class="creature"> Snake </div>
+                <div class="creature"> Lizard </div>
+                <div class="terrain"> Jungle </div>
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!--  **********  Código jQuery  **********  -->
+    <script>
+
+        $(document).ready(function () {
+
+            console.warn('----------  Documento Cargado!!!  ----- ', 'CDN Google - jQuery Versión: ', $.fn.jquery, ' ----------', '\n');
+
+
+            //  -----  Atravesando el DOM  -  Descendiendo  -----
+
+            //  -----  Selectores CSS  -----
+            let $animals = $("#animals .creature");
+            console.log("\nanimals con la clase creature - Selectores css: ", $animals);
+
+            //  -----  Método find()  -----
+            $animals = $("#animals").find('.creature');
+            console.log("animals con la clase creature - Método find(): ", $animals);
+
+
+            //  -----  Método children()  ------
+            $animals = $("#animals > *");
+            console.log("\nTodos los hijos de animals - Selectores CSS: ", $animals);
+
+            $animals = $("#animals").children();
+            console.log("Todos los hijos de animals - Método children(): ", $animals);
+
+            $animals = $("#animals > div");
+            console.log("\nHijos directos de animals - Selectores CSS: ", $animals);
+
+            $animals = $("#animals").children('div');
+            console.log("Hijos directos de animals - Método children(): ", $animals);
+
+
+            //  -----  Buscar el elemento Cats  -----
+            
+            // ----- Buscar el elemento con el texto "Cat" -----
+            let catElement = $("#animals .creature").first().find('.creature').eq(1).text();
+            console.log("\nBuscar el elemento Cats: ", catElement);
+
+            //  -----  first(), last()  -----
+            $animals = $("#animals");
+            $animals.children().first().children('.creature').last().text();
+            console.log("\nBuscar el elemento Cats - first(), last(): ", $animals);
+
+            //  -----  prev()  -----
+            $animals = $("#animals");
+            $animals.children().first().children().last().prev().prev();
+            console.log("\nBuscar el elemento Cats - prev(): ", $animals);
+
+            //  -----  next()  -----
+            $animals = $("#animals");
+            $animals.children().first().children().first().next();
+            console.log("\nBuscar el elemento Cats - next(): ", $animals);
+
+
+            //  -----  Atravesando el DOM  -  Ascendiendo  -----
+            let $cats = $("#cats");
+            //console.log("\nCats: ", $cats);
+            
+            //  -----  parent()  -----
+            $animals = $cats.parent().parent();
+            console.log("\nBuscar animals - parent(): ", $animals);
+
+            //  -----  parents()  -----
+            $animals = $cats.parents();
+            console.log("\nBuscar todos los padres de Cats - parents(): ", $animals);
+
+            $animals = $cats.parents('.category');
+            console.log("\nTodos los padres de Cats con la clase category - parents(): ", $animals);
+
+            //  -----  closest()  -----
+            $animals = $cats.closest('.category');
+            console.log("\nAncestro mas cercano de Cats con la clase creature - closets(): ", $animals);
+
+        });
+
+    </script>
+
+</body>
+
+</html>
