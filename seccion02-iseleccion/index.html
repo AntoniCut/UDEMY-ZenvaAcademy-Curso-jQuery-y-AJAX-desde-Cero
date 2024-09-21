@@ -1,0 +1,218 @@
+<!--  *************************************************************************************************  -->
+<!--  **********  /01-jquery-y-ajax-desde-cero-zenva-academy/seccion02-seleccion/index.html  **********  -->
+<!--  *************************************************************************************************  -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title> Seccion 2 - Selección </title>
+
+    <!--  **********  Favicon  **********  -->
+    <link rel="icon" href="img/jquery-icon.png">
+
+    <!--  **********  Librería de jQuery - CDN de Google  **********  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+
+
+    <!--  **********  Estilos  **********  -->
+    <style>
+        .header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid green;
+        }
+
+        .main {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            /* text-align: left; */
+            margin-top: 20px;
+            gap: 50px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 180px;
+            margin: 0 auto;
+            background-color: blueviolet;
+            color: white;
+            padding: 7px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .input {
+            width: 200px;
+            height: 20px;
+        }
+
+        #container {
+            padding: 30px;
+            background-color: yellow;
+        }
+
+        .class1 {
+            background-color: #9b50af;
+        }
+
+        .class2 {
+            background-color: green;
+        }
+
+        li {
+            margin: 10px;
+        }
+
+        .highlighted {
+            color: blue;
+            background-color: red;
+        }
+
+        .fondoAmarillo {
+            background-color: yellow;
+        }
+
+        form>div {
+            margin: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--  **********  Header o Cabecera  **********  -->
+    <header class="header">
+
+        <h1> Seccion 2 - Selección. </h1>
+        <hr>
+
+    </header>
+
+    <!--  **********  Contenido  **********  -->
+    <main class="main">
+
+        <div id="container">
+
+            <p> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Repellat illo error, voluptate ullam
+                exercitationem eum amet voluptas,
+                fugiat ipsam accusamus, vitae qui minima! Repudiandae est aut magni maxime accusamus voluptates?
+            </p>
+
+        </div>
+
+
+        <ul>
+            <h2> ----- Selección de Elementos ----- </h2>
+            <li class="class1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class1"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li>
+                <ul>
+                    <li> Nemo enim <a href=""> some link </a> ipsa voluptatem quia </li>
+                    <li> Nemo enim ipsa voluptatem quia </li>
+                    <li> Nemo enim ipsa voluptatem quia </li>
+                    <li> Nemo enim ipsa voluptatem quia </li>
+                </ul>
+            </li>
+            <li class="class2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class2"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+        </ul>
+
+
+        <ul id="listado">
+            <h2> ----- Selección Descendiente ----- </h2>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <div>
+                <ul>
+                    <li> Nemo enim <a href=""> some link </a> ipsa voluptatem quia </li>
+                    <li> Nemo enim ipsa voluptatem quia </li>
+                    <li> Nemo enim ipsa voluptatem quia </li>
+                    <li> Nemo enim ipsa voluptatem quia </li>
+                </ul>
+            </div>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+            <li class="class3"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+        </ul>
+
+
+        <form>
+            <h2> ----- Selección por Atributo ----- </h2>
+            <div> <input type="text" required placeholder="First Name"> </div>
+            <div> <input type="text" required placeholder="Last Name"> </div>
+            <div> <input type="text" placeholder="Phone"> </div>
+            <div> <input type="text" required placeholder="Email"> </div>
+            <div> <input type="text" placeholder="School"> </div>
+            <button> Submit </button>
+        </form>
+
+    </main>
+
+
+    <!--  **********  Código jQuery  **********  -->
+    <script>
+
+        $(document).ready(function () {
+
+            console.warn('----------  Documento Cargado!!!  ----- ', 'CDN Google - jQuery Versión: ', $.fn.jquery, ' ----------', '\n');
+
+
+            //  -----  Seleccion por ID y class  -----
+            $('#container').html('Hola');
+            $('.class1').text('elementos');
+
+
+            //  -----  Seleccion de Multiples Elementos  -----
+            $('.class1, .class2').html('<strong> HOLA </strong>');
+
+
+            //  -----  Seleccion Descendiente  -----
+            $('li.class2:first').text('1º elemento de la lista con class2');
+            $('#listado > li').addClass('highlighted');     //  Selecciona a los hijos directos.
+
+            //  -----  Seleccion por Atributo  -----
+            $('input[required]').addClass('fondoAmarillo');
+            
+            $('input[placeholder="Phone"]').css({
+                color: 'white',
+                backgroundColor: 'blue'
+            });
+            
+            $('input[placeholder*="First"]').css({
+                color: 'white',
+                backgroundColor: 'red'
+            });
+        
+        });
+
+    </script>
+
+</body>
+
+</html>
