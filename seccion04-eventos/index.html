@@ -1,0 +1,308 @@
+<!--  ***********************************************************************************************  -->
+<!--  **********  /01-jquery-y-ajax-desde-cero-zenva-academy/seccion04-eventos/index.html  **********  -->
+<!--  ***********************************************************************************************  -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title> Seccion 4 - Trabajando con Eventos </title>
+
+    <!--  **********  Favicon  **********  -->
+    <link rel="icon" href="img/jquery-icon.png">
+
+    <!--  **********  Librería de jQuery - CDN de Google  **********  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+
+
+    <!--  **********  Estilos  **********  -->
+    <style>
+        .header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid green;
+        }
+
+        .main {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 20px;
+            font-size: 16px;
+        }
+
+        .container1 {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            /* width: 180px; */
+            /* margin: 0 auto; */
+            background-color: blueviolet;
+            color: white;
+            padding: 7px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .colorFondo {
+            background-color: red !important;
+        }
+
+        #example1,
+        #example2 {
+            width: 180px;
+            height: 180px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #53E8B4;
+            cursor: pointer;
+            border: 1px solid black;
+        }
+
+        .ejercicio-practico {
+            width: 400px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 30px;
+            background-color: #9854B0;
+        }
+
+        .container2 {
+            width: 300px;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            background-color: #53E8B4;
+        }
+
+        select {
+            height: 30px;
+        }
+
+        #result1,
+        #result2,
+        #result3 {
+            font-size: 24px;
+        }
+
+        .switch {
+            background-color: blueviolet;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--  **********  Header o Cabecera  **********  -->
+    <header class="header">
+
+        <h1> Seccion 4 - Trabajando con Eventos. </h1>
+        <hr>
+
+    </header>
+
+    <!--  **********  Contenido  **********  -->
+    <main class="main">
+
+        <!--  -----  Contenedor 1  -----  -->
+        <div class="container1">
+
+            <div id="example1"> </div>
+
+            <div id="example2">
+                <button class="switch"> Click me!!! </button>
+            </div>
+
+        </div>
+
+
+        <!--  -----  Contenedor 2  -----  -->
+        <div class="ejercicio-practico">
+
+            <h2> Ejrcicio Practico con data </h2>
+
+            <div id="example3" class="container2">
+
+                <select id="place1">
+                    <option> Pick your destination </option>
+                    <option data-price="100"> Santiago </option>
+                    <option selected data-price="180"> Madrid </option>
+                    <option data-price="300"> Yakarta </option>
+                    <option data-price="150"> Istambul </option>
+                    <option data-price="200"> Tokio </option>
+                </select>
+                <button> Pick </button>
+
+            </div>
+
+            <div id="result1" class="container2"> </div>
+
+        </div>
+
+
+        <!--  -----  Contenedor 3  -----  -->
+        <div class="ejercicio-practico">
+
+            <h2> Ejrcicio Practico con Change </h2>
+
+            <div id="example4" class="container2">
+
+                <select id="place2">
+                    <option> Pick your destination </option>
+                    <option value="Santiago" data-price="100"> Santiago </option>
+                    <option value="Madrid" selected data-price="180"> Madrid </option>
+                    <option value="Yakarta" data-price="300"> Yakarta </option>
+                    <option value="Istambul" data-price="150"> Istambul </option>
+                    <option value="Tokio" data-price="200"> Tokio </option>
+                </select>
+
+            </div>
+
+            <div id="result2" class="container2"> </div>
+
+        </div>
+
+
+        <!--  -----  Contenedor 4  -----  -->
+        <div class="ejercicio-practico">
+
+            <h2> Ejrcicio Practico evento Teclado </h2>
+
+            <div id="example5" class="container2">
+
+                <input type="text">
+
+            </div>
+
+            <div id="result3" class="container2">
+                Your Name is:
+            </div>
+
+        </div>
+
+
+        <!--  -----  Contenedor 5  -----  -->
+        <div class="ejercicio-practico">
+
+            <h2> Ejrcicio Practico <br> Comportamiento Predeterminado </h2>
+
+            <div id="example6" class="container2">
+
+                <a href="https://zenva.com"> Hello </a>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+
+    <!--  **********  Código jQuery  **********  -->
+    <script>
+
+        $(document).ready(function () {
+
+            console.warn('----------  Documento Cargado!!!  ----- ', 'CDN Google - jQuery Versión: ', $.fn.jquery, ' ----------', '\n');
+
+
+            //  -----  Trabajando con Eventos  -----
+            $("#example1").on('click', function () {
+
+                console.log('this: ', this);
+                console.log('$(this): ', $(this));
+                $(this).toggleClass('colorFondo');
+            });
+
+
+            //  -----  Delegacion de Eventos  -----
+            $("#example2").on('click', '.switch', function () {
+                $(this).parent().toggleClass('colorFondo');
+            });
+
+
+            //  -----  Ejemplo Practico con Data  -----
+            $("#example3").on('click', 'button', function () {
+
+                const $selected = $("#example3 select option:selected");
+                const value = $selected.val();
+                const precio = $selected.data('price');
+                console.log(value, precio);
+
+                if (precio) $("#result1").html(value + ' ' + precio);
+            });
+
+
+            //  -----  Ejemplo Practico con Change  -----
+            $("#example4").on('change', '#place2', function () {
+
+                const $selected = $("#place2 option:selected");
+                const value = $selected.val();
+                const precio = $selected.data('price');
+                console.log(value, precio);
+
+                if (precio) $("#result2").html(value + ' ' + precio);
+            });
+
+
+            //  -----  Ejemplo Practico con keyup  -----
+            $("#example5").on('keyup', 'input', function () {
+                $("#result3").html('Your name is: ' + $('input').val());
+
+            });
+
+
+            //  -----  Ejemplo Practico Comportamiento Predeterminado  -----
+            $("#example6").on('click', 'a', function (e) {
+                alert('Hello');
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            $("#example6").on('click', function (e) {
+                alert('Hello Container');
+            });
+
+
+
+
+
+
+
+        });
+
+    </script>
+
+</body>
+
+</html>
