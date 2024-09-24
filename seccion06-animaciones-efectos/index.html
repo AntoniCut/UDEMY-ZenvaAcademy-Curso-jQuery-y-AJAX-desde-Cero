@@ -1,0 +1,337 @@
+<!--  ***********************************************************************************************************  -->
+<!--  **********  /01-jquery-y-ajax-desde-cero-zenva-academy/seccion06-animaciones-efectos/index.html  **********  -->
+<!--  ***********************************************************************************************************  -->
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title> Seccion 5 - Manipulacion del DOM </title>
+
+    <!--  **********  Favicon  **********  -->
+    <link rel="icon" href="img/jquery-icon.png">
+
+    <!--  **********  Librería de jQuery - CDN de Google  **********  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"> </script>
+
+
+    <!--  **********  Estilos  **********  -->
+    <style>
+        .header {
+            width: 100%;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid green;
+        }
+
+        .main {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            /* align-items: center; */
+            margin-top: 20px;
+            gap: 50px;
+            font-size: 16px;
+        }
+
+        .ejemplos {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            /* justify-content: center; */
+            align-items: center;
+            margin-top: 20px;
+            gap: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            /* width: 180px; */
+            /* margin: 0 auto; */
+            background-color: blueviolet;
+            color: white;
+            padding: 0 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .botones {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        input {
+            height: 20px;
+        }
+
+
+        /*  **********  */
+
+        .item-box {
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            background-color: #3beab4;
+        }
+
+        .item-title {
+            margin: 10px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .item-box p {
+            font-size: 16px;
+            color: #6f6f6e;
+        }
+
+        .item-price {
+            margin: 10px 0;
+            font-weight: bold;
+        }
+
+        .info-link,
+        .info-link2 {
+            font-size: 16px;
+        }
+
+        .more-info {
+            /* margin-top: 20px; */
+            display: none;
+        }
+
+        .boton {
+            width: 100px;
+            background-color: #e17bba;
+            color: white;
+            font-weight: bold;
+            border: none;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .example {
+            position: relative;
+            left: 20px;
+            width: 100px;
+            height: 100px;
+            margin-top: 20px;
+            /* display: flex;
+            flex-direction: column;
+            padding: 10px; */
+            background-color: #3beab4;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--  **********  Header o Cabecera  **********  -->
+    <header class="header">
+
+        <h1> Seccion 5 - Manipulación del DOM. </h1>
+        <hr>
+
+    </header>
+
+    <!--  **********  Contenido  **********  -->
+    <main class="main">
+
+        <!--  -----  Animaciones y Efectos  -----  -->
+        <div class="ejemplos">
+
+            <h2>
+                show() - hide() - toggle() - fadeIn() - fadeOut() - fadeToggle()
+                <br>
+                slideDown() - slideUp() - slideToggle()
+            </h2>
+
+            <div class="item-box" data-price="199">
+
+                <img src="images/bahia-inglesa.png">
+
+                <div class="item-title"> Bahia Inglesa </div>
+
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat eveniet quibusdam minima laborum
+                    molestiae!
+                    Nobis velit nisi repellat suscipit itaque facere voluptatem odio totam dolore numquam deleniti, vel
+                    maxime alias!
+                </p>
+
+                <div class="item-price"> $199 </div>
+
+                <button class="boton"> Add to Cart </button>
+
+                <div> <a href="#" class="info-link1"> More Info show-hide </a> </div>
+                <div> <a href="#" class="info-link2"> More Info toggle </a> </div>
+
+                <div> <a href="#" class="info-link3"> More Info fadeIn-fadeOut </a> </div>
+                <div> <a href="#" class="info-link4"> More Info fadeToggle </a> </div>
+
+                <div> <a href="#" class="info-link5"> More Info slideDown-slideUp </a> </div>
+                <div> <a href="#" class="info-link6"> More Info slideToggle </a> </div>
+
+                <div class="more-info">
+
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium similique iste magnam
+                        placeat,
+                        eaque odit ab nihil maiores fuga in pariatur ea earum! Itaque molestias nesciunt doloremque
+                        fugiat odio at.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="ejemplos">
+
+            <h2> Animando Propiedades CSS </h2>
+            <div id="example1" class="example"> </div>
+            <div id="example2" class="example"> </div>
+            <div id="example3" class="example"> </div>
+
+        </div>
+
+    </main>
+
+
+    <!--  **********  Código jQuery  **********  -->
+    <script>
+
+        $(document).ready(function () {
+
+            console.warn('----------  Documento Cargado!!!  ----- ', 'CDN Google - jQuery Versión: ', $.fn.jquery, ' ----------', '\n');
+
+
+            //  ----------  Animaciones y Efectos  ----------
+
+            //  -----  show() - hide()  -----
+            $(".item-box").on('click', '.info-link1', function (event) {
+
+                event.preventDefault();
+
+                $(this).closest('.item-box')
+                    .find('.more-info')
+                    .show(3000, function () {
+                        alert('Se Mostro!!!')
+                    })
+                    .hide(3000, function () {
+                        alert('se Oculto!!!')
+                    })
+            });
+
+
+            //  -----  toggle()  -----
+            $(".item-box").on('click', '.info-link2', function (event) {
+
+                event.preventDefault();
+
+                $(this).closest('.item-box')
+                    .find('.more-info')
+                    .toggle(3000)
+            });
+
+
+            //  -----  fadeIn() - fadeOut()  -----
+            $(".item-box").on('click', '.info-link3', function (event) {
+
+                event.preventDefault();
+
+                $(this).closest('.item-box')
+                    .find('.more-info')
+                    .fadeIn(3000)
+                    .fadeOut(3000)
+            });
+
+
+            //  -----  fadeToggle()  -----
+            $(".item-box").on('click', '.info-link4', function (event) {
+
+                event.preventDefault();
+
+                $(this).closest('.item-box')
+                    .find('.more-info')
+                    .fadeToggle(3000)
+            });
+
+
+            //  -----  slideDown() - slideUp()  -----
+            $(".item-box").on('click', '.info-link5', function (event) {
+
+                event.preventDefault();
+
+                $(this).closest('.item-box')
+                    .find('.more-info')
+                    .slideDown(3000)
+                    .slideUp(3000)
+            });
+
+
+            //  -----  slideToggle()  -----
+            $(".item-box").on('click', '.info-link6', function (event) {
+
+                event.preventDefault();
+
+                $(this).closest('.item-box')
+                    .find('.more-info')
+                    .slideToggle(3000)
+            });
+
+
+            //  -----  Animando Propiedades CSS  -----
+           
+            $("#example1").on('click', function () {
+                $(this).animate({ opacity: 0.3, }, 'fast');
+            });
+
+
+            $("#example2").on('click', function () {
+                $(this).animate({ 
+                    left: 200,
+                    width: 50,
+                    height: 50 
+                }, 'slow');
+            });
+
+
+            $("#example3").on('click', function () {
+                $(this).animate({ 
+                    left: '+=50',
+                    width: '-=10',
+                    height: '-=10' 
+                }, 'slow');
+            });
+
+
+            // $(".info-link").on('click', function (event) {
+
+            //     event.preventDefault();
+
+            //     $('.more-info').show()
+
+            // });
+
+        });
+
+    </script>
+
+</body>
+
+</html>
