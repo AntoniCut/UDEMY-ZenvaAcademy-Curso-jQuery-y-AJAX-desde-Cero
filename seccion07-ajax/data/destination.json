@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "name": "Bahia Inglesa",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium similique iste magnam placeat, eaque odit ab nihil maiores fuga in pariatur ea earum! Itaque molestias nesciunt doloremque fugiat odio at.",
+        "moreInfo": "informacion adicional para el ejemplo",
+        "image": "images/bahia-inglesa.png",
+        "price": 199
+    },
+
+    {
+        "id": 2,
+        "name": "Iquique",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium similique iste magnam placeat, eaque odit ab nihil maiores fuga in pariatur ea earum! Itaque molestias nesciunt doloremque fugiat odio at.",
+        "moreInfo": "informacion adicional para el ejemplo",
+        "image": "images/bahia-inglesa.png",
+        "price": 128
+    },
+
+    {
+        "id": 3,
+        "name": "Arica",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusantium similique iste magnam placeat, eaque odit ab nihil maiores fuga in pariatur ea earum! Itaque molestias nesciunt doloremque fugiat odio at.",
+        "moreInfo": "informacion adicional para el ejemplo",
+        "image": "images/bahia-inglesa.png",
+        "price": 57
+    }
+]
